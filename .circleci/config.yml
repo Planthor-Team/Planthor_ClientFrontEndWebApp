@@ -15,10 +15,10 @@ jobs:
             npm run test -- --coverage &&
             npm run build
       - run:
-          name: check
-          command: ls
-      - store_test_results:
-          path: ./coverage
+          name: "Run Jest and Collect Coverage Reports"
+          command: jest --collectCoverage=true
+      - store_artifacts:
+          path: coverage
       - save_cache:
           paths:
             - ./build/*
