@@ -1,8 +1,6 @@
 version: 2.1
 orbs:
   node: circleci/node@4.3.0
-  git: compute/git@0.0.9
-
 jobs:
   build:
     executor:
