@@ -1,18 +1,41 @@
 version: 2.1
 orbs:
   node: circleci/node@4.3.0
+  git: compute/git@0.0.9
+
 jobs:
-  test:
+  build:
     executor:
       name: node/default
-      tag: '13.14'
+      tag: "13.14"
     steps:
       - checkout
       - node/install-packages
       - run:
+          name: test and build
           command: npm run test && npm run build
-          
+      - run:
+          name: check
+          command: ls
+      - save_cache:
+          paths:
+            - ./build/*
+          key: build_folder
+  public:
+    executor:
+      name: node/default
+      tag: "13.14"
+    steps:
+      - restore_cache:
+          keys:
+            - build_folder
+      - run:
+          name: check 1
+          command: ls
 workflows:
   test_my_app:
     jobs:
-      - test
+      - build
+      - public:
+          requires:
+            - build
