@@ -18,7 +18,7 @@ jobs:
           name: check
           command: ls
       - store_test_results:
-          path: test-results
+          path: ./coverage
       - save_cache:
           paths:
             - ./build/*
