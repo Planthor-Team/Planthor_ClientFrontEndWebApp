@@ -11,10 +11,14 @@ jobs:
       - node/install-packages
       - run:
           name: test and build
-          command: npm run test && npm run build
+          command: |
+            npm run test -- --coverage >>
+            npm run build
       - run:
           name: check
           command: ls
+      - store_test_results:
+          path: test-results
       - save_cache:
           paths:
             - ./build/*
@@ -27,9 +31,11 @@ jobs:
       - restore_cache:
           keys:
             - build_folder
+          name: test_return_cache
       - run:
           name: check 1
           command: ls
+
 workflows:
   test_my_app:
     jobs:
