@@ -30,7 +30,6 @@ jobs:
             - build_folder
             - ls
           name: test_return_cache
-      -
       - run:
           name: check 1
           command: |
