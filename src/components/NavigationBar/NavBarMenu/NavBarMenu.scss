@@ -1,0 +1,19 @@
+.list-menu {
+  position: absolute;
+  box-sizing: border-box;
+  left: 220px;
+
+  ul {
+    display: flex;
+    text-decoration: none;
+
+    li {
+
+      .nav-link {
+        color: #000;
+        font-weight: 600;
+        padding: 1em 1em;
+      }
+    }
+  }
+}
